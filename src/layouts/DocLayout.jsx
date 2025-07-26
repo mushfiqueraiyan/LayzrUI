@@ -96,12 +96,15 @@ const DocLayout = () => {
                     </a>
                   </li>
                   <li>
-                    <a className="flex justify-between items-center">
+                    <NavLink
+                      to={"/docs/installation"}
+                      className="flex justify-between items-center"
+                    >
                       <span>Installation</span>
                       {/* <span className="badge badge-xs badge-warning text-white">
                   Updated
                 </span> */}
-                    </a>
+                    </NavLink>
                   </li>
                 </ul>
               </details>

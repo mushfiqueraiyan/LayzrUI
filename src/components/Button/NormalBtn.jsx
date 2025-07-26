@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Settings2 } from "lucide-react";
 import { Eye, Code as CodeIcon } from "lucide-react";
 import CodeLayout from "../../layouts/CodeLayout";
@@ -6,6 +6,7 @@ import SocialLoginBtn from "./SocialLoginBtn";
 
 const NormalBtn = () => {
   const [tab, setTab] = useState("preview");
+  const [theme, setTheme] = useState("light");
 
   const buttons = [
     { label: "Button 1", className: "bg-blue-500 text-white cursor-pointer" },
@@ -43,7 +44,20 @@ const NormalBtn = () => {
 <button className="border border-red-500 text-black px-4 py-2 rounded">Button 6</button>
   `;
 
-  const theme = document.documentElement.getAttribute("data-theme");
+  useEffect(() => {
+    const updateTheme = () => {
+      const current =
+        document.documentElement.getAttribute("data-theme") || "light";
+      setTheme(current);
+    };
+
+    updateTheme(); // Initial
+    window.addEventListener("themeChange", updateTheme); // Listen to changes
+
+    return () => {
+      window.removeEventListener("themeChange", updateTheme); // Clean up
+    };
+  }, []);
 
   return (
     <div className="p-6 space-y-4   shadow px-10">
@@ -59,12 +73,14 @@ const NormalBtn = () => {
       <div className="flex items-center justify-between">
         <div
           className={`flex items-center ${
-            theme == "dark" ? "bg-[#1f1f1f]" : "bg-gray-200"
+            theme === "dark"
+              ? "bg-[#1f1f1f] text-white"
+              : "bg-gray-200 text-black"
           } p-1 rounded-full w-fit`}
         >
           <button
             onClick={() => setTab("preview")}
-            className={`flex items-center gap-1 px-4 py-1.5 text-sm rounded-full transition ${
+            className={`flex  items-center gap-1 px-4 py-1.5 text-sm rounded-full transition ${
               tab === "preview"
                 ? "dark:bg-black bg-gray-400 text-black dark:text-white cursor-pointer"
                 : "cursor-pointer "

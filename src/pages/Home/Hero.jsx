@@ -1,9 +1,23 @@
 import { BookOpen, Wrench } from "lucide-react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const Hero = () => {
-  const theme = document.documentElement.getAttribute("data-theme");
+  const [theme, setTheme] = useState("light");
+  useEffect(() => {
+    const updateTheme = () => {
+      const current =
+        document.documentElement.getAttribute("data-theme") || "light";
+      setTheme(current);
+    };
+
+    updateTheme(); // Initial
+    window.addEventListener("themeChange", updateTheme); // Listen to changes
+
+    return () => {
+      window.removeEventListener("themeChange", updateTheme); // Clean up
+    };
+  }, []);
 
   return (
     <div className="relative overflow-hidden">

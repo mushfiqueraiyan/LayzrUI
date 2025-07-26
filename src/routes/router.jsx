@@ -4,6 +4,7 @@ import Home from "../pages/Home/Home";
 import DocLayout from "../layouts/DocLayout";
 import Docs from "../Docs/Docs";
 import NormalBtn from "../components/Button/NormalBtn";
+import Installation from "../pages/GettingStarted/Installation";
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Docs />,
+      },
+      {
+        path: "/docs/installation",
+        element: <Installation />,
       },
       {
         path: "/docs/components/button",

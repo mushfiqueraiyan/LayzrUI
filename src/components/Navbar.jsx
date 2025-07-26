@@ -25,10 +25,11 @@ const Navbar = () => {
   const toggleTheme = () => {
     const nextTheme = darkMode ? "light" : "dark";
     setDarkMode(!darkMode);
-
     localStorage.setItem("theme", nextTheme);
-
     document.documentElement.setAttribute("data-theme", nextTheme);
+
+    // This event makes all components update theme state!
+    window.dispatchEvent(new Event("themeChange"));
   };
 
   useEffect(() => {
