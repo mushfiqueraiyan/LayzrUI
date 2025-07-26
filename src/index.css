@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
+@import "tailwindcss";
+@plugin "daisyui";
+
+* {
+  font-family: "Open Sans";
+}
+
+:root[data-theme="light"] {
+  --bg: #ffffff;
+  --fg: #000000;
+}
+
+:root[data-theme="dark"] {
+  --bg: #000000;
+  --fg: #f0f0f0;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+}
+
+@keyframes border-glow-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.animate-border-glow {
+  animation: border-glow-animation 4s linear infinite;
+}
+
+.animatedBox {
+  position: relative;
+  display: inline-block;
+  padding: 8px 20px;
+  border-radius: 9999px;
+
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.animatedBox::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background-image: conic-gradient(#04b0ee 2deg, #04b0ee 5deg);
+  z-index: -2;
+  border-radius: 9999px;
+  animation: rotate 2s infinite linear;
+}
+
+.animatedBox::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  background-color: #1c1b29;
+  border-radius: 9999px;
+  z-index: -1;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+pre {
+  font-family: "Fira Code", monospace;
+}
+
+code {
+  display: block;
+  white-space: pre;
+}
+
+.shiki {
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
