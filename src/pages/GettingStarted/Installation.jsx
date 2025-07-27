@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 const Installation = () => {
-  const [theme, setTheme] = useState("light"); // default fallback
+  const [theme, setTheme] = useState("dark"); // default fallback
 
   useEffect(() => {
     const current =

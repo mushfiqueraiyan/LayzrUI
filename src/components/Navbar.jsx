@@ -10,13 +10,30 @@ import {
   MessageCircleIcon,
 } from "lucide-react";
 import { Link, NavLink } from "react-router";
+import logo from "./.././assets/logo.png";
 
 const Navbar = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [scroll, setScroll] = useState(false);
+  const [theme, setTheme] = useState("dark");
 
   useEffect(() => {
-    const saved = localStorage.getItem("theme") || "light";
+    const updateTheme = () => {
+      const current =
+        document.documentElement.getAttribute("data-theme") || "dark";
+      setTheme(current);
+    };
+
+    updateTheme(); // Initial
+    window.addEventListener("themeChange", updateTheme); // Listen to changes
+
+    return () => {
+      window.removeEventListener("themeChange", updateTheme); // Clean up
+    };
+  }, []);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("theme") || "dark";
     const isDark = saved === "dark";
     setDarkMode(isDark);
     document.documentElement.setAttribute("data-theme", saved);
@@ -42,7 +59,9 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`sticky top-0 z-10 py-3 border-b border-gray-500 shadow-sm transition-colors duration-300 ${
+      className={`sticky top-0 z-10 py-3 border-b ${
+        theme == "dark" ? "border-gray-800 " : "border-gray-200"
+      }  transition-colors duration-300 ${
         scroll ? "backdrop-blur-sm bg-black/20  text-white border-b-0" : ""
       }`}
     >
@@ -51,7 +70,11 @@ const Navbar = () => {
         <div className="flex items-center gap-6">
           {/* Logo */}
           <Link to={"/"} className="flex items-center gap-1">
-            <span className="font-semibold text-lg">Goat UI</span>
+            <img
+              src={logo}
+              alt=""
+              className={`w-15 h-5 ${theme == "dark" ? "invert" : ""}`}
+            />
             <span className="text-xs  px-2 py-0.5 rounded ml-1">V 1.0</span>
           </Link>
 

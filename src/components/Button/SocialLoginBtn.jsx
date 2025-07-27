@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Eye,
   Code as CodeIcon,
@@ -18,41 +18,24 @@ import { FaMicrosoft } from "react-icons/fa";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import CodeLayout from "../../layouts/CodeLayout";
 
-const CodeBlock = ({ code }) => {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = async () => {
-    await navigator.clipboard.writeText(code);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
-  };
-
-  return (
-    <div className="relative">
-      <SyntaxHighlighter
-        language="jsx"
-        style={oneDark}
-        customStyle={{
-          padding: "20px",
-          borderRadius: "10px",
-          fontSize: "0.9rem",
-        }}
-      >
-        {code}
-      </SyntaxHighlighter>
-
-      <button
-        onClick={handleCopy}
-        className="absolute top-2 right-2 bg-black text-white p-1.5 rounded hover:bg-gray-800"
-      >
-        {copied ? "Copied!" : "📋"}
-      </button>
-    </div>
-  );
-};
-
 const SocialLoginBtn = () => {
   const [tab, setTab] = useState("preview");
+  const [theme, setTheme] = useState("dark");
+
+  useEffect(() => {
+    const updateTheme = () => {
+      const current =
+        document.documentElement.getAttribute("data-theme") || "light";
+      setTheme(current);
+    };
+
+    updateTheme(); // Initial
+    window.addEventListener("themeChange", updateTheme); // Listen to changes
+
+    return () => {
+      window.removeEventListener("themeChange", updateTheme); // Clean up
+    };
+  }, []);
 
   const code = `
 import React from 'react';
@@ -128,8 +111,9 @@ export default SimpleButton;
   const buttons = [
     {
       label: "Login with Email",
-      className:
-        "border border-white/20 rounded-md cursor-pointer active:scale-95 transition transform duration-150 ease-in-out",
+      className: `border  ${
+        theme == "dark" ? "border-gray-800" : "border-gray-300"
+      } rounded-md cursor-pointer active:scale-95 transition transform duration-150 ease-in-out`,
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -149,8 +133,9 @@ export default SimpleButton;
     },
     {
       label: "Continue with Google",
-      className:
-        "border border-white/20  rounded-md cursor-pointer active:scale-95 transition transform duration-150 ease-in-out",
+      className: `border  ${
+        theme == "dark" ? "border-gray-800" : "border-gray-300"
+      } rounded-md cursor-pointer active:scale-95 transition transform duration-150 ease-in-out`,
       icon: (
         <img
           src="https://img.icons8.com/color/48/google-logo.png"
@@ -160,8 +145,9 @@ export default SimpleButton;
     },
     {
       label: "Continue with GitHub",
-      className:
-        "border border-white/20  rounded-md cursor-pointer active:scale-95 transition transform duration-150 ease-in-out",
+      className: `border  ${
+        theme == "dark" ? "border-gray-800" : "border-gray-300"
+      } rounded-md cursor-pointer active:scale-95 transition transform duration-150 ease-in-out`,
       icon: (
         <img
           src="https://img.icons8.com/ios-glyphs/30/github.png"
@@ -171,8 +157,9 @@ export default SimpleButton;
     },
     {
       label: "Login with Facebook",
-      className:
-        "border border-white/20  rounded-md cursor-pointer active:scale-95 transition transform duration-150 ease-in-out",
+      className: `border  ${
+        theme == "dark" ? "border-gray-800" : "border-gray-300"
+      } rounded-md cursor-pointer active:scale-95 transition transform duration-150 ease-in-out`,
       icon: (
         <img
           src="https://img.icons8.com/ios-filled/50/facebook-new.png"
@@ -182,8 +169,9 @@ export default SimpleButton;
     },
     {
       label: "Login with X",
-      className:
-        "border border-white/20 cursor-pointer active:scale-95 transition transform duration-150 ease-in-out",
+      className: `border  ${
+        theme == "dark" ? "border-gray-800" : "border-gray-300"
+      } rounded-md cursor-pointer active:scale-95 transition transform duration-150 ease-in-out`,
       icon: (
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/X_icon.svg/768px-X_icon.svg.png"
@@ -193,8 +181,9 @@ export default SimpleButton;
     },
     {
       label: "Login with Apple",
-      className:
-        "border border-white/20 cursor-pointer active:scale-95 transition transform duration-150 ease-in-out",
+      className: `border  ${
+        theme == "dark" ? "border-gray-800" : "border-gray-300"
+      } rounded-md cursor-pointer active:scale-95 transition transform duration-150 ease-in-out`,
       icon: (
         <img
           src="https://img.icons8.com/ios-filled/50/mac-os.png"
@@ -204,8 +193,9 @@ export default SimpleButton;
     },
     {
       label: "Login with Microsoft",
-      className:
-        "border border-white/20  rounded-md cursor-pointer active:scale-95 transition transform duration-150 ease-in-out",
+      className: `border  ${
+        theme == "dark" ? "border-gray-800" : "border-gray-300"
+      } rounded-md cursor-pointer active:scale-95 transition transform duration-150 ease-in-out`,
       icon: (
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Microsoft_icon.svg/2048px-Microsoft_icon.svg.png"
@@ -215,8 +205,9 @@ export default SimpleButton;
     },
     {
       label: "Login with Slack ",
-      className:
-        "border border-white/20 cursor-pointer active:scale-95 transition transform duration-150 ease-in-out",
+      className: `border  ${
+        theme == "dark" ? "border-gray-800" : "border-gray-300"
+      } rounded-md cursor-pointer active:scale-95 transition transform duration-150 ease-in-out`,
       icon: (
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Slack_icon_2019.svg/1200px-Slack_icon_2019.svg.png"
@@ -226,8 +217,9 @@ export default SimpleButton;
     },
     {
       label: "Login with LinkedIn",
-      className:
-        "border border-white/20 rounded-md cursor-pointer active:scale-95 transition transform duration-150 ease-in-out",
+      className: `border  ${
+        theme == "dark" ? "border-gray-800" : "border-gray-300"
+      } rounded-md cursor-pointer active:scale-95 transition transform duration-150 ease-in-out`,
       icon: (
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/LinkedIn_icon.svg/2048px-LinkedIn_icon.svg.png"
@@ -236,8 +228,6 @@ export default SimpleButton;
       ),
     },
   ];
-
-  const theme = document.documentElement.getAttribute("data-theme");
 
   return (
     <div className="p-4 mt-10 space-y-4 rounded-xl  ">
@@ -287,7 +277,7 @@ export default SimpleButton;
             {buttons.map((btn, idx) => (
               <button
                 key={idx}
-                className={`flex items-center gap-2 px-4 py-2 rounded shadow ${btn.className}`}
+                className={`flex items-center gap-2 px-4 py-2 rounded  ${btn.className}`}
               >
                 {btn.icon}
                 {btn.label}

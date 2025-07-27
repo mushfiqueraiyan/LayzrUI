@@ -6,7 +6,7 @@ import SocialLoginBtn from "./SocialLoginBtn";
 
 const NormalBtn = () => {
   const [tab, setTab] = useState("preview");
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
 
   const buttons = [
     { label: "Button 1", className: "bg-blue-500 text-white cursor-pointer" },

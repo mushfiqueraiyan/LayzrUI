@@ -1,10 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { NavLink, Outlet } from "react-router";
 import { Cross, CrossIcon } from "lucide-react";
 
 const DocLayout = () => {
   const [toggle, setToggle] = useState(false);
+  const [theme, setTheme] = useState("dark");
+
+  useEffect(() => {
+    const updateTheme = () => {
+      const current =
+        document.documentElement.getAttribute("data-theme") || "light";
+      setTheme(current);
+    };
+
+    updateTheme(); // Initial
+    window.addEventListener("themeChange", updateTheme); // Listen to changes
+
+    return () => {
+      window.removeEventListener("themeChange", updateTheme); // Clean up
+    };
+  }, []);
 
   const handleToggle = () => {
     setToggle(!toggle);
@@ -12,7 +28,7 @@ const DocLayout = () => {
 
   return (
     <div className="">
-      <div className="hidden md:hidden lg:block">
+      <div className="hidden md:hidden lg:block lg:sticky lg:top-0 z-10">
         <Navbar />
       </div>
       <div className="drawer lg:drawer-open ">
@@ -24,7 +40,11 @@ const DocLayout = () => {
         />
         <div className="drawer-content flex flex-col ">
           {/* Navbar */}
-          <div className="navbar border-b-1 border-[#ffffff44] w-full lg:hidden">
+          <div
+            className={`navbar sticky top-0 border-b-1 border-[#ffffff44] ${
+              theme == "dark" ? "bg-black" : "bg-white"
+            } w-full lg:hidden`}
+          >
             <div className="flex-none ">
               {toggle ? (
                 <label
@@ -78,13 +98,19 @@ const DocLayout = () => {
           </div>
           {/* Page content here */}
         </div>
-        <div className="drawer-side mt-17 md:mt-17 lg:mt-0">
+        <div className={`drawer-side mt-16  md:mt-17 lg:mt-0`}>
           <label
             htmlFor="my-drawer-2"
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="menu p-4 w-80 md:pt-5 min-h-full  border-r-1  border-[#ffffff38]">
+          <ul
+            className={`menu p-4 w-80 md:pt-5 min-h-full ${
+              theme == "dark" ? "bg-black" : "bg-white"
+            }  border-r-1  ${
+              theme == "dark" ? "border-[#ffffff38]" : "border-gray-200"
+            }`}
+          >
             <li>
               <details open>
                 <summary className="font-bold">Getting Started</summary>
@@ -112,7 +138,7 @@ const DocLayout = () => {
 
             {/* Components */}
             <li>
-              <details open>
+              <details open className="transition duration-100">
                 <summary className="font-bold">Components</summary>
                 <ul className="border-l-1 border-[#ffffff44]">
                   {[

@@ -92,3 +92,7 @@ code {
   font-size: 0.875rem;
   line-height: 1.6;
 }
+
+.cascadia {
+  font-family: "Poppins";
+}
