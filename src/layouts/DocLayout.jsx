@@ -27,7 +27,7 @@ const DocLayout = () => {
   };
 
   return (
-    <div className="">
+    <div>
       <div className="hidden md:hidden lg:block lg:sticky lg:top-0 z-10">
         <Navbar />
       </div>
@@ -89,7 +89,7 @@ const DocLayout = () => {
               )}
             </div>
             <div className="mx-2 flex-1 px-2 lg:hidden">
-              <h1 className="font-bold text-xl">Goat UI</h1>
+              <h1 className="font-bold text-xl">Layzr UI</h1>
             </div>
           </div>
           {/* Page content here */}
@@ -114,17 +114,32 @@ const DocLayout = () => {
             <li>
               <details open>
                 <summary className="font-bold">Getting Started</summary>
-                <ul className="border-l-1 border-[#ffffff44]">
+                <ul className="border-l-1 border-[#ffffff44] ">
                   <li>
-                    <a className="flex justify-between items-center">
+                    <NavLink
+                      to={"/docs/introduction"}
+                      className={({ isPending, isActive }) =>
+                        isPending
+                          ? "pending"
+                          : isActive
+                          ? "bg-[#1a1919f5] p-2 mt-2 rounded-2xl flex justify-between items-center"
+                          : " flex justify-between items-center "
+                      }
+                    >
                       <span>Introduction</span>
                       <div className="w-2 h-2 bg-purple-500 rounded-full animate-ping"></div>
-                    </a>
+                    </NavLink>
                   </li>
                   <li>
                     <NavLink
                       to={"/docs/installation"}
-                      className="flex justify-between items-center"
+                      className={({ isPending, isActive }) =>
+                        isPending
+                          ? "pending"
+                          : isActive
+                          ? "bg-[#1a1919f5] p-2 mt-2 rounded-2xl flex justify-between items-center"
+                          : " flex justify-between items-center "
+                      }
                     >
                       <span>Installation</span>
                       {/* <span className="badge badge-xs badge-warning text-white">
@@ -138,9 +153,9 @@ const DocLayout = () => {
 
             {/* Components */}
             <li>
-              <details open className="transition duration-100">
+              <details open>
                 <summary className="font-bold">Components</summary>
-                <ul className="border-l-1 border-[#ffffff44]">
+                <ul className="border-l-1  border-[#ffffff44]">
                   {[
                     "Loaders",
                     "Patterns Collection",
@@ -148,73 +163,119 @@ const DocLayout = () => {
                     "Gradient",
                   ].map((item) => (
                     <li key={item}>
-                      <a className="flex justify-between items-center">
+                      <NavLink
+                        to={"/"}
+                        className={({ isPending, isActive }) =>
+                          isPending
+                            ? "pending"
+                            : isActive
+                            ? "bg-[#1a1919f5] p-2  mt-2 rounded-2xl flex justify-between items-center"
+                            : " flex  justify-between items-center"
+                        }
+                      >
                         <span>{item}</span>
                         {/* <span className="badge badge-xs badge-outline text-blue-500 border-blue-500">
                     Tool
                   </span> */}
-                      </a>
-                    </li>
-                  ))}
-                  {[
-                    "Marquee",
-                    "Code Profile",
-                    "Portfolio",
-                    "Orbiting Circles",
-                    "Network",
-                  ].map((item) => (
-                    <li>
-                      <NavLink
-                        to={`/docs/components/${item.trim(" ")}`}
-                        key={item}
-                      >
-                        {item}
                       </NavLink>
                     </li>
                   ))}
+                  <summary
+                    className={`font-bold mt-2 ${
+                      theme == "dark" ? "text-gray-400" : ""
+                    }`}
+                  >
+                    Data input
+                  </summary>
+                  <ul className="border-l-1 border-[#ffffff44]">
+                    {["Input", "Text Area", "Select", "CheckBox"].map(
+                      (item) => (
+                        <li>
+                          <NavLink
+                            to={`/docs/components/${item.trim(" ")}`}
+                            key={item}
+                            className={({ isPending, isActive }) =>
+                              isPending
+                                ? "pending"
+                                : isActive
+                                ? "bg-[#1a1919f5] p-2 mt-2 rounded-2xl flex justify-between items-center"
+                                : " flex justify-between items-center "
+                            }
+                          >
+                            {item}
+                          </NavLink>
+                        </li>
+                      )
+                    )}
+                  </ul>
                   {["Video Text", "Image Swiper", "Divider"].map((item) => (
                     <li key={item}>
-                      <a className="flex justify-between items-center">
+                      <NavLink
+                        to={"/"}
+                        className={({ isPending, isActive }) =>
+                          isPending
+                            ? "pending"
+                            : isActive
+                            ? "bg-[#1a1919f5] p-2 mt-2 rounded-2xl flex justify-between items-center"
+                            : " flex justify-between items-center"
+                        }
+                      >
                         <span>{item}</span>
+                        <span className="badge badge-xs badge-success">
+                          New
+                        </span>
+                      </NavLink>
+                    </li>
+                  ))}
+
+                  <summary
+                    className={`font-bold mt-2 ${
+                      theme == "dark" ? "text-gray-400" : ""
+                    }`}
+                  >
+                    Button
+                  </summary>
+                  <ul className="border-l-1 border-[#ffffff44]">
+                    <li>
+                      <NavLink
+                        to={"/docs/components/button"}
+                        className={({ isPending, isActive }) =>
+                          isPending
+                            ? "pending"
+                            : isActive
+                            ? "bg-[#1a1919f5] p-2 mt-2 rounded-2xl flex justify-between items-center"
+                            : " flex justify-between items-center mt-2"
+                        }
+                      >
+                        Button
+                      </NavLink>
+                    </li>
+                    <li>
+                      <a>Modern Button</a>
+                    </li>
+                    <li>
+                      <a>Retro Button</a>
+                    </li>
+                    <li>
+                      <a>Dropdown</a>
+                    </li>
+                    <li>
+                      <a className="flex justify-between items-center">
+                        <span>Shimmer Button</span>
                         <span className="badge badge-xs badge-success">
                           New
                         </span>
                       </a>
                     </li>
-                  ))}
-                </ul>
-              </details>
-            </li>
-
-            {/* Button */}
-            <li>
-              <details open>
-                <summary className="font-bold">Button</summary>
-                <ul className="border-l-1 border-[#ffffff44]">
-                  <li>
-                    <NavLink to={"/docs/components/button"}>Button</NavLink>
-                  </li>
-                  <li>
-                    <a>Modern Button</a>
-                  </li>
-                  <li>
-                    <a>Retro Button</a>
-                  </li>
-                  <li>
-                    <a>Dropdown</a>
-                  </li>
-                  <li>
-                    <a className="flex justify-between items-center">
-                      <span>Shimmer Button</span>
-                      <span className="badge badge-xs badge-success">New</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a className="flex justify-between items-center">
-                      <span>Drawer</span>
-                      <span className="badge badge-xs badge-success">New</span>
-                    </a>
-                  </li>
+                    <li>
+                      <a className="flex justify-between items-center">
+                        <span>Drawer</span>
+                        <span className="badge badge-xs badge-success">
+                          New
+                        </span>
+                      </a>
+                    </li>
+                  </ul>
                 </ul>
               </details>
             </li>

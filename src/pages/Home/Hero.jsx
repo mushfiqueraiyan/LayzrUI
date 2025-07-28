@@ -23,10 +23,12 @@ const Hero = () => {
     <div className="relative overflow-hidden">
       {/* 🔲 Grid background layer */}
       <div
-        className="absolute inset-0 bg-center bg-repeat opacity-10 dark:opacity-20 z-0"
+        className={`absolute inset-0 bg-center bg-repeat  ${
+          theme == "dark" ? "opacity-12" : "opacity-5 invert"
+        }  z-0`}
         style={{
           backgroundImage:
-            "url('https://www.transparenttextures.com/patterns/squared-metal.png')",
+            "url('https://i.pinimg.com/736x/f8/48/e4/f848e49527f4186bd0d86a917d2567d7.jpg')",
         }}
         aria-hidden="true"
       ></div>

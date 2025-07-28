@@ -12,14 +12,14 @@ const CodeLayout = ({ code }) => {
     const loadHighlighter = async () => {
       if (!highlighterInstance) {
         highlighterInstance = await createHighlighter({
-          themes: ["dark-plus"],
+          themes: ["tokyo-night"],
           langs: ["jsx", "javascript", "html", "css"],
         });
       }
 
       const highlightedHtml = highlighterInstance.codeToHtml(code, {
         lang: "jsx",
-        theme: "dark-plus", // same theme always
+        theme: "tokyo-night", // same theme always
         decorations: [
           {
             // line and character are 0-indexed
@@ -50,7 +50,7 @@ const CodeLayout = ({ code }) => {
   return (
     <div className="relative">
       <div
-        className="text-sm rounded-lg h-90  overflow-auto border  bg-[#161515] dark:border-neutral-700"
+        className="text-sm rounded-lg h-90  overflow-auto border  bg-black  dark:border-neutral-700"
         dangerouslySetInnerHTML={{ __html: html }}
       />
       <button

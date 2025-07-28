@@ -5,6 +5,8 @@ import DocLayout from "../layouts/DocLayout";
 import Docs from "../Docs/Docs";
 import NormalBtn from "../components/Button/NormalBtn";
 import Installation from "../pages/GettingStarted/Installation";
+import AdminDashboard from "../pages/Admin/AdminDashboard";
+import AdminLayout from "../layouts/AdminLayout";
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +34,16 @@ export const router = createBrowserRouter([
       {
         path: "/docs/components/button",
         element: <NormalBtn />,
+      },
+    ],
+  },
+  {
+    path: "/admin",
+    element: <AdminLayout />,
+    children: [
+      {
+        index: true,
+        element: <AdminDashboard />,
       },
     ],
   },

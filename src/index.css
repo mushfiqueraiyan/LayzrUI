@@ -1,9 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
 @import "tailwindcss";
 @plugin "daisyui";
 
 * {
   font-family: "Open Sans";
+}
+
+.roboto-mono {
+  font-family: "Roboto Mono";
 }
 
 :root[data-theme="light"] {
@@ -58,7 +63,7 @@ body {
   background-image: conic-gradient(#04b0ee 2deg, #04b0ee 5deg);
   z-index: -2;
   border-radius: 9999px;
-  animation: rotate 2s infinite linear;
+  animation: rotate 4s infinite linear;
 }
 
 .animatedBox::after {
