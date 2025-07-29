@@ -1,6 +1,6 @@
 import { CodeIcon, Settings2, Eye } from "lucide-react";
 import React, { useEffect, useState } from "react";
-import CodeLayout from "../../layouts/CodeLayout";
+import CodeLayout from "../../../layouts/CodeLayout";
 
 const SimpleButton = () => {
   const [tab, setTab] = useState("preview");

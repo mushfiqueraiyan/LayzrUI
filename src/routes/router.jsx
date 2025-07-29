@@ -3,10 +3,10 @@ import MainLayout from "../layouts/MainLayout";
 import Home from "../pages/Home/Home";
 import DocLayout from "../layouts/DocLayout";
 import Docs from "../Docs/Docs";
-import NormalBtn from "../components/Button/NormalBtn";
 import Installation from "../pages/GettingStarted/Installation";
 import AdminDashboard from "../pages/Admin/AdminDashboard";
 import AdminLayout from "../layouts/AdminLayout";
+import NormalBtn from "../components/Button/NormalButton/NormalBtn";
 
 export const router = createBrowserRouter([
   {

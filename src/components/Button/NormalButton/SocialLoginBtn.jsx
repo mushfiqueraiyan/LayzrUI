@@ -12,7 +12,7 @@ import {
   X,
 } from "lucide-react";
 
-import CodeLayout from "../../layouts/CodeLayout";
+import CodeLayout from "../../../layouts/CodeLayout";
 
 const SocialLoginBtn = () => {
   const [tab, setTab] = useState("preview");

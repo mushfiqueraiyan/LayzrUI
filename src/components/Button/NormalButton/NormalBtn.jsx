@@ -1,7 +1,6 @@
 import React from "react";
-
-import SocialLoginBtn from "./SocialLoginBtn";
 import SimpleButton from "./SimpleButton";
+import SocialLoginBtn from "./SocialLoginBtn";
 
 const NormalBtn = () => {
   return (
