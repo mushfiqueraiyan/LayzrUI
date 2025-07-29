@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
-import { NavLink, Outlet } from "react-router";
+import { NavLink, Outlet, useNavigate } from "react-router";
 import { Cross, CrossIcon } from "lucide-react";
 
 const DocLayout = () => {
@@ -26,6 +26,12 @@ const DocLayout = () => {
     setToggle(!toggle);
   };
 
+  const navigate = useNavigate();
+
+  const handleIntro = () => {
+    navigate("/docs");
+  };
+
   return (
     <div>
       <div className="hidden md:hidden lg:block lg:sticky lg:top-0 z-10">
@@ -42,7 +48,7 @@ const DocLayout = () => {
           {/* Navbar */}
           <div
             className={`navbar sticky top-0 border-b-1 border-[#ffffff44] ${
-              theme == "dark" ? "bg-black" : "bg-white"
+              theme == "dark" ? "bg-[#010313]" : "bg-white"
             } w-full lg:hidden`}
           >
             <div className="flex-none ">
@@ -105,8 +111,8 @@ const DocLayout = () => {
             className="drawer-overlay"
           ></label>
           <ul
-            className={`menu p-4 w-80 md:pt-5 min-h-full ${
-              theme == "dark" ? "bg-black" : "bg-white"
+            className={`menu p-4 w-80 md:pt-5 min-h-full overflow-y-auto ${
+              theme == "dark" ? "bg-[#010313]" : "bg-white"
             }  border-r-1  ${
               theme == "dark" ? "border-[#ffffff38]" : "border-gray-200"
             }`}
@@ -117,14 +123,8 @@ const DocLayout = () => {
                 <ul className="border-l-1 border-[#ffffff44] ">
                   <li>
                     <NavLink
-                      to={"/docs/introduction"}
-                      className={({ isPending, isActive }) =>
-                        isPending
-                          ? "pending"
-                          : isActive
-                          ? "bg-[#1a1919f5] p-2 mt-2 rounded-2xl flex justify-between items-center"
-                          : " flex justify-between items-center "
-                      }
+                      onClick={handleIntro}
+                      className={`flex justify-between items-center`}
                     >
                       <span>Introduction</span>
                       <div className="w-2 h-2 bg-purple-500 rounded-full animate-ping"></div>
@@ -137,7 +137,11 @@ const DocLayout = () => {
                         isPending
                           ? "pending"
                           : isActive
-                          ? "bg-[#1a1919f5] p-2 mt-2 rounded-2xl flex justify-between items-center"
+                          ? ` p-2 mt-2 rounded-2xl flex justify-between ${
+                              theme == "dark"
+                                ? "bg-[#1E293B]"
+                                : "bg-black text-white"
+                            } items-center`
                           : " flex justify-between items-center "
                       }
                     >
@@ -158,9 +162,9 @@ const DocLayout = () => {
                 <ul className="border-l-1  border-[#ffffff44]">
                   {[
                     "Loaders",
-                    "Patterns Collection",
-                    "Color Palette",
-                    "Gradient",
+                    "Theme Controller",
+                    "Pagination",
+                    "Authentication",
                   ].map((item) => (
                     <li key={item}>
                       <NavLink
@@ -169,7 +173,11 @@ const DocLayout = () => {
                           isPending
                             ? "pending"
                             : isActive
-                            ? "bg-[#1a1919f5] p-2  mt-2 rounded-2xl flex justify-between items-center"
+                            ? ` p-2 mt-2 rounded-2xl flex justify-between ${
+                                theme == "dark"
+                                  ? "bg-[#1E293B]"
+                                  : "bg-black text-white"
+                              } items-center`
                             : " flex  justify-between items-center"
                         }
                       >
@@ -192,13 +200,17 @@ const DocLayout = () => {
                       (item) => (
                         <li>
                           <NavLink
-                            to={`/docs/components/${item.trim(" ")}`}
+                            to={`/docs/components/${item.split(" ").join("-")}`}
                             key={item}
                             className={({ isPending, isActive }) =>
                               isPending
                                 ? "pending"
                                 : isActive
-                                ? "bg-[#1a1919f5] p-2 mt-2 rounded-2xl flex justify-between items-center"
+                                ? ` p-2 mt-2 rounded-2xl flex justify-between ${
+                                    theme == "dark"
+                                      ? "bg-[#1E293B]"
+                                      : "bg-black text-white"
+                                  } items-center`
                                 : " flex justify-between items-center "
                             }
                           >
@@ -208,15 +220,20 @@ const DocLayout = () => {
                       )
                     )}
                   </ul>
-                  {["Video Text", "Image Swiper", "Divider"].map((item) => (
+                  {["Hero", "Carousel", "Divider"].map((item) => (
                     <li key={item}>
                       <NavLink
                         to={"/"}
+                        key={item}
                         className={({ isPending, isActive }) =>
                           isPending
                             ? "pending"
                             : isActive
-                            ? "bg-[#1a1919f5] p-2 mt-2 rounded-2xl flex justify-between items-center"
+                            ? ` p-2 mt-2 rounded-2xl flex justify-between ${
+                                theme == "dark"
+                                  ? "bg-[#1E293B]"
+                                  : "bg-black text-white"
+                              } items-center`
                             : " flex justify-between items-center"
                         }
                       >
@@ -243,30 +260,25 @@ const DocLayout = () => {
                           isPending
                             ? "pending"
                             : isActive
-                            ? "bg-[#1a1919f5] p-2 mt-2 rounded-2xl flex justify-between items-center"
+                            ? ` p-2 mt-2 rounded-2xl flex justify-between ${
+                                theme == "dark"
+                                  ? "bg-[#1E293B]"
+                                  : "bg-black text-white"
+                              } items-center`
                             : " flex justify-between items-center mt-2"
                         }
                       >
                         Button
                       </NavLink>
                     </li>
+
                     <li>
-                      <a>Modern Button</a>
-                    </li>
-                    <li>
-                      <a>Retro Button</a>
+                      <a>Animated Button</a>
                     </li>
                     <li>
                       <a>Dropdown</a>
                     </li>
-                    <li>
-                      <a className="flex justify-between items-center">
-                        <span>Shimmer Button</span>
-                        <span className="badge badge-xs badge-success">
-                          New
-                        </span>
-                      </a>
-                    </li>
+
                     <li>
                       <a className="flex justify-between items-center">
                         <span>Drawer</span>

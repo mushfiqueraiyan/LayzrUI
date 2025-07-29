@@ -50,7 +50,7 @@ const CodeLayout = ({ code }) => {
   return (
     <div className="relative">
       <div
-        className="text-sm rounded-lg h-90  overflow-auto border  bg-black  dark:border-neutral-700"
+        className="text-sm rounded-lg h-90  overflow-auto border  bg-[#09011d]  dark:border-neutral-700"
         dangerouslySetInnerHTML={{ __html: html }}
       />
       <button

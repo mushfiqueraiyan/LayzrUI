@@ -59,7 +59,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`sticky top-0 z-10 py-3 border-b ${
+      className={`sticky top-0 z-10 py-3 px-3 md:px-0 lg:px-0 border-b ${
         theme == "dark" ? "border-gray-800 " : "border-gray-200"
       }  transition-colors duration-300 ${
         scroll ? "backdrop-blur-sm bg-black/20  text-white border-b-0" : ""
@@ -114,8 +114,11 @@ const Navbar = () => {
             <Github size={20} />
           </a>
 
-          <button onClick={toggleTheme}>
-            {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+          <button
+            className="cursor-pointer transition-all"
+            onClick={toggleTheme}
+          >
+            {darkMode ? <Sun size={20} color="yellow" /> : <Moon size={20} />}
           </button>
         </div>
       </div>

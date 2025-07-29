@@ -12,10 +12,6 @@ import {
   X,
 } from "lucide-react";
 
-import { FcGoogle } from "react-icons/fc";
-import { FaMicrosoft } from "react-icons/fa";
-
-import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import CodeLayout from "../../layouts/CodeLayout";
 
 const SocialLoginBtn = () => {
@@ -243,14 +239,14 @@ export default SimpleButton;
       <div className="flex items-center justify-between">
         <div
           className={`flex items-center ${
-            theme == "dark" ? "bg-[#1f1f1f]" : "bg-gray-200"
+            theme == "dark" ? "bg-[#1E293B]" : "bg-gray-200"
           } p-1 rounded-full w-fit`}
         >
           <button
             onClick={() => setTab("preview")}
             className={`flex  items-center gap-1 px-4 py-1.5 text-sm rounded-full transition ${
               tab === "preview"
-                ? "dark:bg-black bg-gray-400 text-black dark:text-white cursor-pointer"
+                ? "dark:bg-[#020617] bg-gray-400 text-black dark:text-white cursor-pointer"
                 : "cursor-pointer "
             }`}
           >
@@ -261,7 +257,7 @@ export default SimpleButton;
             onClick={() => setTab("code")}
             className={`flex items-center gap-1 px-4 py-1.5 text-sm rounded-full transition ${
               tab === "code"
-                ? "bg-black text-white cursor-pointer"
+                ? "bg-[#020617] text-white cursor-pointer"
                 : "cursor-pointer"
             }`}
           >
