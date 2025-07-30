@@ -44,11 +44,11 @@ const FirstFaq = () => {
   return (
     <section className="py-20 p-6 ">
       <h2 className="text-4xl font-bold text-center mb-2">FAQ</h2>
-      <p className="text-center text-gray-400 mb-8">
+      <p className="text-center text-gray-400 ">
         Find quick answers to common queries
       </p>
 
-      <div className="space-y-4 max-w-7xl mx-auto">
+      <div className="space-y-4 max-w-7xl mx-auto py-8">
         {faqData.map((item, index) => (
           <div
             key={index}

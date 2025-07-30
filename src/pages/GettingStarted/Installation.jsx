@@ -45,15 +45,17 @@ const Installation = () => {
       <section className="mb-10">
         <h2 className="text-2xl font-semibold mb-2 ">Icon Support</h2>
         <p className="text-md leading-relaxed">
-          Some Layzr UI components include icons. For those using React, make
-          sure to install
+          Some Layzr UI components include icons component & animation. For
+          those using React, make sure to install
         </p>
         <pre
           className={`bg-gray-800 ${
             theme == "dark" ? "text-white" : "text-white"
           } text-sm p-4 rounded-lg mt-2`}
         >
-          <code className="">npm install react-icons</code>
+          <code className="roboto-mono ">
+            npm i react-icons lucide-react framer-motion recharts swiper
+          </code>
         </pre>
       </section>
 

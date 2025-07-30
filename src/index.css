@@ -60,7 +60,7 @@ body {
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background-image: conic-gradient(#04b0ee 2deg, #04b0ee 5deg);
+  background-image: conic-gradient(#04b0ee 2deg, #3448fd 5deg);
   z-index: -2;
   border-radius: 9999px;
   animation: rotate 4s infinite linear;

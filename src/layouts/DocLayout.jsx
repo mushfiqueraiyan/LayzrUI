@@ -98,9 +98,19 @@ const DocLayout = () => {
               <h1 className="font-bold text-xl">Layzr UI</h1>
             </div>
           </div>
+
           {/* Page content here */}
-          <div className="">
-            <Outlet />
+          <div className="flex">
+            <div className="w-full md:w-full lg:w-4/5">
+              <Outlet />
+            </div>
+            <div
+              className={`w-1/5 border-l-1 p-5 ${
+                theme == "dark" ? "border-gray-600" : "border-gray-200"
+              } hidden md:hidden lg:block`}
+            >
+              <h1>Under Construction 🏗️</h1>
+            </div>
           </div>
           {/* Page content here */}
         </div>
@@ -137,12 +147,12 @@ const DocLayout = () => {
                         isPending
                           ? "pending"
                           : isActive
-                          ? ` p-2 mt-2 rounded-2xl flex justify-between ${
+                          ? ` p-1 px-3 mt-2 rounded-md flex justify-between ${
                               theme == "dark"
                                 ? "bg-[#1E293B]"
                                 : "bg-black text-white"
                             } items-center`
-                          : " flex justify-between items-center "
+                          : " flex justify-between items-center mt-2"
                       }
                     >
                       <span>Installation</span>
@@ -173,12 +183,12 @@ const DocLayout = () => {
                           isPending
                             ? "pending"
                             : isActive
-                            ? ` p-2 mt-2 rounded-2xl flex justify-between ${
+                            ? ` p-1 px-3  rounded-md flex justify-between ${
                                 theme == "dark"
                                   ? "bg-[#1E293B]"
                                   : "bg-black text-white"
                               } items-center`
-                            : " flex  justify-between items-center"
+                            : " flex justify-between items-center "
                         }
                       >
                         <span>{item}</span>
@@ -206,12 +216,12 @@ const DocLayout = () => {
                               isPending
                                 ? "pending"
                                 : isActive
-                                ? ` p-2 mt-2 rounded-2xl flex justify-between ${
+                                ? ` p-1 px-3  rounded-md flex justify-between ${
                                     theme == "dark"
                                       ? "bg-[#1E293B]"
                                       : "bg-black text-white"
                                   } items-center`
-                                : " flex justify-between items-center "
+                                : " flex justify-between items-center"
                             }
                           >
                             {item}
@@ -229,12 +239,12 @@ const DocLayout = () => {
                           isPending
                             ? "pending"
                             : isActive
-                            ? ` p-2 mt-2 rounded-2xl flex justify-between ${
+                            ? ` p-1 px-3  rounded-md flex justify-between ${
                                 theme == "dark"
                                   ? "bg-[#1E293B]"
                                   : "bg-black text-white"
                               } items-center`
-                            : " flex justify-between items-center"
+                            : " flex justify-between items-center "
                         }
                       >
                         <span>{item}</span>
@@ -248,7 +258,7 @@ const DocLayout = () => {
                   <summary
                     className={`font-bold mt-2 ${
                       theme == "dark" ? "text-gray-400" : ""
-                    }`}
+                    } mb-2`}
                   >
                     Button
                   </summary>
@@ -260,12 +270,12 @@ const DocLayout = () => {
                           isPending
                             ? "pending"
                             : isActive
-                            ? ` p-2 mt-2 rounded-2xl flex justify-between ${
+                            ? ` p-1 px-3  rounded-md flex justify-between ${
                                 theme == "dark"
                                   ? "bg-[#1E293B]"
                                   : "bg-black text-white"
                               } items-center`
-                            : " flex justify-between items-center mt-2"
+                            : " flex justify-between items-center "
                         }
                       >
                         Button
