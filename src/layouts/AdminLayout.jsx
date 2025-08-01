@@ -41,7 +41,7 @@ const AdminLayout = () => {
           {/* Navbar */}
           <div
             className={`navbar sticky top-0 border-b-1 border-[#ffffff44] ${
-              theme == "dark" ? "bg-black" : "bg-white"
+              theme == "dark" ? "bg-[#010313]" : "bg-white"
             } w-full lg:hidden`}
           >
             <div className="flex-none ">
@@ -104,8 +104,8 @@ const AdminLayout = () => {
             className="drawer-overlay"
           ></label>
           <ul
-            className={`menu p-4 w-80 md:pt-5 min-h-full space-y-3 ${
-              theme == "dark" ? "bg-black" : "bg-white"
+            className={`menu p-4 w-80 md:pt-5 min-h-full space-y-2 ${
+              theme == "dark" ? "bg-[#010313]" : "bg-white"
             }  border-r-1  ${
               theme == "dark" ? "border-[#ffffff38]" : "border-gray-200"
             }`}

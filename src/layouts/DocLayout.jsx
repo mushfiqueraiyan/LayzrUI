@@ -105,7 +105,7 @@ const DocLayout = () => {
               <Outlet />
             </div>
             <div
-              className={`w-1/5 border-l-1 p-5 ${
+              className={`w-1/5 border-l-1 sticky top-30 p-5 ${
                 theme == "dark" ? "border-gray-600" : "border-gray-200"
               } hidden md:hidden lg:block`}
             >

@@ -1,0 +1,107 @@
+$npm install react-live 
+
+import React from "react";
+import { useQuery } from "@tanstack/react-query";
+import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
+import {
+  Sun,
+  Moon,
+  Github,
+  Linkedin,
+  Search,
+  BookOpen,
+  Wrench,
+  MessageCircleIcon,
+} from "lucide-react";
+import { Link, NavLink } from "react-router-dom"; // Assuming you have react-router-dom installed
+import logo from "./.././assets/logo.png"; // Make sure this path is correct
+
+// Mock function to fetch the component code from your API
+const fetchComponentCode = async () => {
+  // Replace with your actual API endpoint to fetch the code string
+  const res = await fetch("https://your-api-url.com/api/components/Navbar");
+  if (!res.ok) {
+    throw new Error("Failed to fetch component code");
+  }
+  const data = await res.json();
+  // We need to return just the code string
+  return data.code;
+};
+
+const LiveCodeEditor = () => {
+  const { data: code, isLoading, isError, error } = useQuery({
+    queryKey: ["navbarComponentCode"],
+    queryFn: fetchComponentCode,
+  });
+
+  // Provide the dependencies the component needs to render
+  const scope = {
+    useState: React.useState,
+    useEffect: React.useEffect,
+    Link,
+    NavLink,
+    logo,
+    Sun,
+    Moon,
+    Github,
+    Linkedin,
+    Search,
+    BookOpen,
+    Wrench,
+    MessageCircleIcon,
+  };
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-500"></div>
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="text-red-500 text-center mt-4">
+        Error: {error.message}
+      </div>
+    );
+  }
+
+  // The `LiveProvider` will transpile and render the code in the `code` prop
+  // The `LivePreview` component will display the result
+  return (
+    <LiveProvider
+      code={code}
+      scope={scope}
+      theme={{
+        plain: {
+          backgroundColor: "#1f2937",
+          color: "#F8F8F2",
+          fontStyle: "italic",
+        },
+      }}
+      className="bg-gray-900 text-white p-4 rounded-lg shadow-lg max-w-full"
+    >
+      <div className="border border-gray-700 p-4 rounded-lg">
+        <h2 className="text-xl font-bold mb-2">Live Preview</h2>
+        <LivePreview className="mt-2" />
+        <LiveError className="text-red-400 mt-2 p-2 bg-red-900 rounded" />
+      </div>
+
+      <div className="mt-4">
+        <h2 className="text-xl font-bold mb-2">Code Editor</h2>
+        <LiveEditor
+          className="border border-gray-700 p-4 rounded-lg overflow-x-auto"
+          style={{
+            fontFamily: "monospace",
+            minHeight: "300px",
+            backgroundColor: "#1f2937",
+            color: "#F8F8F2",
+          }}
+        />
+      </div>
+    </LiveProvider>
+  );
+};
+
+export default LiveCodeEditor;
