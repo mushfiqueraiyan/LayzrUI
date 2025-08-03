@@ -1,33 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { Copy } from "lucide-react";
 import { createHighlighter } from "shiki";
+import reactIcon from "../assets/react.svg";
+import useTheme from "../hooks/useTheme";
 
 let highlighterInstance = null;
 
 const CodeLayout = ({ code }) => {
   const [copied, setCopied] = useState(false);
+  const [activeTab, setActiveTab] = useState("JS");
   const [html, setHtml] = useState("<pre>Loading...</pre>");
+  const theme = useTheme();
 
   useEffect(() => {
     const loadHighlighter = async () => {
       if (!highlighterInstance) {
         highlighterInstance = await createHighlighter({
           themes: ["tokyo-night"],
-          langs: ["jsx", "javascript", "html", "css"],
+          langs: ["tsx", "jsx", "javascript"],
         });
       }
 
       const highlightedHtml = highlighterInstance.codeToHtml(code, {
-        lang: "jsx",
-        theme: "tokyo-night", // same theme always
-        decorations: [
-          {
-            // line and character are 0-indexed
-            start: { line: 1, character: 0 },
-            end: { line: 1, character: 11 },
-            properties: { class: "highlighted-word" },
-          },
-        ],
+        lang: activeTab === "TS" ? "tsx" : "jsx",
+        theme: "tokyo-night",
       });
 
       const paddedHtml = highlightedHtml.replace(
@@ -39,7 +35,7 @@ const CodeLayout = ({ code }) => {
     };
 
     loadHighlighter();
-  }, [code]);
+  }, [code, activeTab]);
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(code);
@@ -48,14 +44,64 @@ const CodeLayout = ({ code }) => {
   };
 
   return (
-    <div className="relative">
+    <div
+      className={`relative rounded-lg border   ${
+        theme == "dark" ? " border-neutral-700" : "border-gray-300"
+      }`}
+    >
+      {/* Header */}
       <div
-        className="text-sm rounded-lg h-90  overflow-auto border  bg-[#09011d]  dark:border-neutral-700"
+        className={`px-3 py-2 text-sm flex items-center justify-between rounded-t-lg text-gray-100 ${
+          theme == "dark"
+            ? "bg-[#0f172a]"
+            : "bg-white border-b-1 text-gray-500 border-gray-300"
+        }`}
+      >
+        <div className="flex items-center gap-2 font-medium">
+          <img src={reactIcon} alt="React" className="w-4 h-4" />
+          <span className="text-xs font-semibold">
+            {activeTab === "TS" ? "TSX" : "JSX"}{" "}
+            <span className="text-slate-400 ml-1">
+              preview.{activeTab === "TS" ? "tsx" : "jsx"}
+            </span>
+          </span>
+        </div>
+        <div className="flex items-center gap-1">
+          <button
+            onClick={() => setActiveTab("TS")}
+            className={`px-2 py-0.5 text-xs rounded font-medium ${
+              activeTab === "TS"
+                ? "bg-white text-black"
+                : "text-slate-400 hover:text-white"
+            }`}
+          >
+            TS
+          </button>
+          <button
+            onClick={() => setActiveTab("JS")}
+            className={`px-2 py-0.5 text-xs rounded font-medium ${
+              activeTab === "JS"
+                ? "bg-white text-black"
+                : "text-slate-400 hover:text-white"
+            }`}
+          >
+            JS
+          </button>
+        </div>
+      </div>
+
+      {/* Code Output */}
+      <div
+        className={`text-sm max-h-[500px] overflow-auto rounded-b-lg ${
+          theme == "dark" ? " bg-[#09011d]" : "bg-white"
+        }  font-mono text-white`}
         dangerouslySetInnerHTML={{ __html: html }}
       />
+
+      {/* Copy Button */}
       <button
         onClick={handleCopy}
-        className="absolute top-2 right-2 bg-black text-white dark:bg-white dark:text-black p-1.5 rounded hover:opacity-80 text-xs"
+        className="absolute top-11 right-2  text-white bg-gray-200 cursor-pointer dark:text-black p-1.5 rounded hover:opacity-80 text-xs"
       >
         {copied ? "Copied!" : <Copy size={16} />}
       </button>

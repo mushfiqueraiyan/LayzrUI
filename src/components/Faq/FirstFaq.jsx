@@ -1,41 +1,43 @@
 import React, { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
+import useTheme from "../../hooks/useTheme";
 
 const faqData = [
   {
-    question: "What is Goat UI Library?",
+    question: "What is Layzr UI Library?",
     answer:
-      "Goat UI is a modern UI component library built for speed, accessibility, and flexibility.",
+      "Layzr UI is a modern UI component library built for speed, accessibility, and flexibility.",
   },
   {
-    question: "Is Goat UI Library compatible with React and Vue?",
-    answer: "Yes, Goat UI works seamlessly with both React and Vue.",
+    question: "Is Layzr UI Library compatible with React and Vue?",
+    answer: "Yes, Layzr UI works seamlessly with both React and Vue.",
   },
   {
-    question: "Is Goat UI Library free to use?",
+    question: "Is Layzr UI Library free to use?",
     answer:
-      "Absolutely! Goat UI is open-source and free to use in personal and commercial projects.",
+      "Absolutely! Layzr UI is open-source and free to use in personal and commercial projects.",
   },
   {
-    question: "Can I contribute to Goat UI Library?",
+    question: "Can I contribute to Layzr UI Library?",
     answer:
-      "Yes! Goat UI welcomes contributions. Visit our GitHub to get started.",
+      "Yes! Layzr UI welcomes contributions. Visit our GitHub to get started.",
   },
   {
-    question: "Can I customize the components in Goat UI Library?",
+    question: "Can I customize the components in Layzr UI Library?",
     answer:
-      "Goat UI components are highly customizable using Tailwind or custom styles.",
+      "Layzr UI components are highly customizable using Tailwind or custom styles.",
   },
   {
-    question: "What is the difference between Goat UI and other UI libraries?",
+    question: "What is the difference between Layzr UI and other UI libraries?",
     answer:
-      "Goat UI is focused on performance, minimalism, and developer experience.",
+      "Layzr UI is focused on performance, minimalism, and developer experience.",
   },
 ];
 
 const FirstFaq = () => {
   const [openIndex, setOpenIndex] = useState(null);
+  const theme = useTheme();
 
   const toggle = (index) => {
     setOpenIndex(index === openIndex ? null : index);
@@ -52,7 +54,9 @@ const FirstFaq = () => {
         {faqData.map((item, index) => (
           <div
             key={index}
-            className="border border-gray-700 rounded-lg p-4 shadow-sm transition-all"
+            className={`border ${
+              theme == "dark" ? "border-gray-700 " : "border-gray-300"
+            } rounded-lg p-4 shadow-sm transition-all`}
           >
             <button
               onClick={() => toggle(index)}

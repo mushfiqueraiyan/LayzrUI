@@ -2,23 +2,10 @@ import { BookOpen, Wrench } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router";
+import useTheme from "../../hooks/useTheme";
 
 const Hero = () => {
-  const [theme, setTheme] = useState("dark");
-  useEffect(() => {
-    const updateTheme = () => {
-      const current =
-        document.documentElement.getAttribute("data-theme") || "light";
-      setTheme(current);
-    };
-
-    updateTheme(); // Initial
-    window.addEventListener("themeChange", updateTheme); // Listen to changes
-
-    return () => {
-      window.removeEventListener("themeChange", updateTheme); // Clean up
-    };
-  }, []);
+  const theme = useTheme();
 
   // Button animation
 
@@ -56,7 +43,11 @@ const Hero = () => {
           {/* Animated Button */}
           <div className="flex items-center justify-center font-sans">
             <style>{customCss}</style>
-            <button className="relative flex items-center justify-center p-[1.5px] bg-gray-300 dark:bg-black rounded-full overflow-hidden group">
+            <button
+              className={`relative flex items-center justify-center ${
+                theme == "dark" ? "" : "bg-white"
+              }  p-[1.5px]  rounded-full overflow-hidden group`}
+            >
               <div
                 className="absolute inset-0"
                 style={{
@@ -65,7 +56,13 @@ const Hero = () => {
                   animation: "shimmer-spin 2.5s linear infinite",
                 }}
               />
-              <span className="relative z-1 inline-flex text-sm items-center justify-center w-full h-full px-4 py-2 text-gray-900 dark:text-white bg-white dark:bg-gray-900 rounded-full group-hover:bg-gray-100 dark:group-hover:bg-gray-800 transition-colors duration-300">
+              <span
+                className={`relative z-1 inline-flex text-sm items-center justify-center w-full h-full px-4 py-2  ${
+                  theme == "dark"
+                    ? "bg-black text-white"
+                    : "bg-white text-gray-900"
+                } rounded-full  transition-colors duration-300`}
+              >
                 💫 Stunning UI Made Easy
               </span>
             </button>

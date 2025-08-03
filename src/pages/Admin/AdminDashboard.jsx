@@ -17,7 +17,7 @@ export default function AdminDashboard() {
   };
 
   return (
-    <div className="p-6 md:p-12 max-w-5xl mx-auto my-16 bg-gray-900 border border-gray-800 rounded-2xl shadow-2xl">
+    <div className="p-6 md:p-12 max-w-5xl mx-auto my-16   rounded-2xl shadow-2xl">
       <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 text-center tracking-tight">
         Add New Component
       </h2>
@@ -185,14 +185,8 @@ export default function AdminDashboard() {
         {/* Buttons */}
         <div className="md:col-span-2 mt-4 flex justify-end space-x-4">
           <button
-            type="button"
-            className="py-3 px-6 text-gray-400 font-semibold rounded-lg hover:text-white hover:bg-gray-800 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-gray-700"
-          >
-            Cancel
-          </button>
-          <button
             type="submit"
-            className="py-3 px-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-600 focus:ring-opacity-50"
+            className="btn btn-primary py-3 px-6 cursor-pointer  text-white font-semibold rounded-lg shadow-md transition-all duration-300 transform hover:scale-105 "
           >
             <span className="flex items-center justify-center gap-2">
               <svg
@@ -207,7 +201,7 @@ export default function AdminDashboard() {
                   clipRule="evenodd"
                 />
               </svg>
-              Save Component
+              Add Component
             </span>
           </button>
         </div>

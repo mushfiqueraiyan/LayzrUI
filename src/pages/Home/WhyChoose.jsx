@@ -1,6 +1,9 @@
 import React from "react";
+import useTheme from "../../hooks/useTheme";
 
 const WhyChoose = () => {
+  const theme = useTheme();
+
   const whyUs = [
     {
       id: 1,
@@ -38,7 +41,9 @@ const WhyChoose = () => {
           >
             <div
               key={data.id}
-              className="py-8 px-6 rounded-2xl border border-gray-700 hover:shadow-[0_0_20px_rgba(168,85,247,0.3)] transition-all duration-300"
+              className={`py-8 px-6 rounded-2xl border ${
+                theme == "dark" ? "border-gray-700" : "border-gray-300"
+              } hover:shadow-[0_0_20px_rgba(168,85,247,0.3)] transition-all duration-300`}
             >
               <h3 className="text-lg font-semibold mb-2">💫 {data.title}</h3>
               <p className="text-sm text-gray-400 leading-relaxed">

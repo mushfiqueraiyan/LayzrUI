@@ -10,7 +10,7 @@ import {
   MessageCircleIcon,
 } from "lucide-react";
 import { Link, NavLink } from "react-router";
-import logo from "./.././assets/logo.png";
+import logo from "./.././assets/icon.png";
 
 const Navbar = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -70,11 +70,16 @@ const Navbar = () => {
         <div className="flex items-center gap-6">
           {/* Logo */}
           <Link to={"/"} className="flex items-center gap-1">
-            <img
-              src={logo}
-              alt=""
-              className={`w-15 h-5 ${theme == "dark" ? "invert" : ""}`}
-            />
+            <div className="flex items-center ">
+              <img
+                src={logo}
+                alt=""
+                className={`w-9 h-9 ${theme == "dark" ? "" : ""}`}
+              />
+              <span className="text-xl font-bold  px-2 py-0.5 rounded ml-1">
+                Layzr UI
+              </span>
+            </div>
             <span className="text-xs  px-2 py-0.5 rounded ml-1">V 1.0</span>
           </Link>
 
