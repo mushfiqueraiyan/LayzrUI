@@ -47,7 +47,7 @@ const DocLayout = () => {
         <div className="drawer-content flex flex-col ">
           {/* Navbar */}
           <div
-            className={`navbar sticky top-0 border-b-1 border-[#ffffff44] ${
+            className={`navbar sticky top-0 border-b-1 z-10 border-[#ffffff44] ${
               theme == "dark" ? "bg-[#010313]" : "bg-white"
             } w-full lg:hidden`}
           >

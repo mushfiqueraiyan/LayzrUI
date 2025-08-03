@@ -47,7 +47,7 @@ const CodeLayout = ({ code }) => {
     <div
       className={`relative rounded-lg border   ${
         theme == "dark" ? " border-neutral-700" : "border-gray-300"
-      }`}
+      } z-1`}
     >
       {/* Header */}
       <div
@@ -69,20 +69,20 @@ const CodeLayout = ({ code }) => {
         <div className="flex items-center gap-1">
           <button
             onClick={() => setActiveTab("TS")}
-            className={`px-2 py-0.5 text-xs rounded font-medium ${
+            className={`px-2 py-0.5 text-xs rounded font-medium cursor-pointer ${
               activeTab === "TS"
-                ? "bg-white text-black"
-                : "text-slate-400 hover:text-white"
+                ? "bg-blue-500 text-white"
+                : "text-slate-400 hover:text-gray-400"
             }`}
           >
             TS
           </button>
           <button
             onClick={() => setActiveTab("JS")}
-            className={`px-2 py-0.5 text-xs rounded font-medium ${
+            className={`px-2 py-0.5 text-xs rounded font-medium cursor-pointer ${
               activeTab === "JS"
-                ? "bg-white text-black"
-                : "text-slate-400 hover:text-white"
+                ? "bg-yellow-300 text-black"
+                : "text-slate-400 hover:text-gray-400"
             }`}
           >
             JS
