@@ -7,6 +7,7 @@ import Installation from "../pages/GettingStarted/Installation";
 import AdminDashboard from "../pages/Admin/AdminDashboard";
 import AdminLayout from "../layouts/AdminLayout";
 import NormalBtn from "../components/Button/NormalButton/NormalBtn";
+import AnimatedBtn from "../components/Button/AnimatedButton/AnimatedBtn";
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ export const router = createBrowserRouter([
       {
         path: "/docs/components/button",
         element: <NormalBtn />,
+      },
+      {
+        path: "/docs/components/AnimatedButton",
+        element: <AnimatedBtn />,
       },
     ],
   },

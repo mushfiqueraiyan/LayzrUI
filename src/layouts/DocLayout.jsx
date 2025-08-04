@@ -48,7 +48,7 @@ const DocLayout = () => {
           {/* Navbar */}
           <div
             className={`navbar sticky top-0 border-b-1 z-10 border-[#ffffff44] ${
-              theme == "dark" ? "bg-[#010313]" : "bg-white"
+              theme == "dark" ? "bg-[#05051A]" : "bg-white"
             } w-full lg:hidden`}
           >
             <div className="flex-none ">
@@ -101,7 +101,7 @@ const DocLayout = () => {
 
           {/* Page content here */}
           <div className="flex">
-            <div className="w-full md:w-full lg:w-4/5">
+            <div className="w-full  md:w-full lg:w-4/5">
               <Outlet />
             </div>
             <div
@@ -122,7 +122,7 @@ const DocLayout = () => {
           ></label>
           <ul
             className={`menu p-4 w-80 md:pt-5 min-h-full overflow-y-auto ${
-              theme == "dark" ? "bg-[#010313]" : "bg-white"
+              theme == "dark" ? "bg-[#05051A]" : "bg-white"
             }  border-r-1  ${
               theme == "dark" ? "border-[#ffffff38]" : "border-gray-200"
             }`}
@@ -283,7 +283,22 @@ const DocLayout = () => {
                     </li>
 
                     <li>
-                      <a>Animated Button</a>
+                      <NavLink
+                        to={"/docs/components/AnimatedButton"}
+                        className={({ isPending, isActive }) =>
+                          isPending
+                            ? "pending"
+                            : isActive
+                            ? ` p-1 px-3  rounded-md flex justify-between ${
+                                theme == "dark"
+                                  ? "bg-[#1E293B]"
+                                  : "bg-black text-white"
+                              } items-center`
+                            : " flex justify-between items-center "
+                        }
+                      >
+                        Animated Button
+                      </NavLink>
                     </li>
                     <li>
                       <a>Dropdown</a>

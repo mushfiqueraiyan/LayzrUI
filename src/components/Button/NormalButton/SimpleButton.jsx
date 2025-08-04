@@ -58,7 +58,7 @@ const SimpleButton = () => {
   }, []);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 ">
       <div>
         <h2 className="text-2xl font-bold ">Normal Button</h2>
         <p className="text-gray-600 mt-1 text-sm">

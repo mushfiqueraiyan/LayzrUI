@@ -5,7 +5,7 @@ import CartBtn from "./CartBtn";
 
 const NormalBtn = () => {
   return (
-    <div className="p-6 space-y-4   shadow px-10">
+    <div className="p-2 md:p-4 lg:p-6 space-y-4 h-screen overflow-auto   shadow px-10">
       <SimpleButton />
       <SocialLoginBtn />
       <CartBtn />
